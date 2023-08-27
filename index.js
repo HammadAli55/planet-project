@@ -25,11 +25,13 @@ fs.createReadStream("kepler_data.csv")
       habitablePlanets.push(data);
     }
   })
-  .on("end", () => {
+  .on("error", () => {
     console.log("err");
   })
   .on("end", () => {
     // console.log("results", results);
-    console.log(habitablePlanets)
-    console.log("done");
+    console.log(habitablePlanets.map((planet) => {
+        return planet['kepler_name']
+    }))
+    console.log(`${habitablePlanets.length} habitable planets found`);
   });
