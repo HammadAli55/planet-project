@@ -2,15 +2,32 @@ const http = require('http');
 const PORT = 3100;
 const server = http.createServer();
 
+const friends = [
+    {
+        id: 1,
+        name: 'Hammad'
+    },
+    {
+        id: 2,
+        name: 'Ali'
+    },
+    {
+        id: 3,
+        name: 'Shah'
+    }
+]
+
 server.on('request', (req, res) => {
+    // const items = req.url.split('/')
     if(req.url === '/friends') {
+        
         res.statusCode = 200;
         res.setHeader('Content-Type', 'application/json');
         // res.writeHead(200, {
         //     'Content-type':'application/json'
         // });
         res.end(JSON.stringify({
-            id:1, name: 'shah'
+            friends
         }))
     } else if(req.url === '/message'){
         res.setHeader('Content-type', 'text/html')
